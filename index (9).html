@@ -1,81 +1,198 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CANVIO — Create Beyond Limits</title>
-<meta name="theme-color" content="#101426">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FINOVA | AI Accounting ERP</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root{--bg:#0d1020;--panel:#151a2e;--panel2:#1b2239;--line:#2b3451;--text:#f4f5fb;--muted:#9ca6c2;--gold:#e9c77b;--purple:#a69bff;--green:#72d6b0;--red:#ff8295;--radius:18px}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,Segoe UI,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.brand{font-weight:900;letter-spacing:2px;font-size:22px}.brand span{color:var(--gold)}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 14px;border-radius:12px;font-weight:650}.btn:hover{border-color:var(--gold)}.btn.primary{background:var(--gold);color:#171827;border-color:var(--gold)}.btn.ghost{background:transparent}.btn.danger{color:var(--red)}.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.sidebar{background:#11162a;border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;gap:24px}.brand small{display:block;font-size:10px;letter-spacing:3px;color:var(--muted);font-weight:500}.nav{display:grid;gap:7px}.nav button{padding:12px;border-radius:12px;background:transparent;color:var(--muted);text-align:left}.nav button.active,.nav button:hover{background:#252c47;color:var(--text)}.nav button b{display:inline-block;width:28px;color:var(--gold)}.sidebottom{margin-top:auto}.main{min-width:0}.topbar{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:15px}.topbar h1{font-size:19px;margin:0}.content{padding:28px 30px;max-width:1500px;margin:auto}.hero{background:linear-gradient(115deg,#252746,#302c52 55%,#5b4b46);padding:32px;border-radius:24px;margin-bottom:25px;position:relative;overflow:hidden}.hero h2{font-size:clamp(25px,4vw,40px);line-height:1.1;margin:8px 0}.hero p{max-width:620px;color:#d5d4e7}.eyebrow{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.stat,.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:19px}.stat strong{font-size:28px;display:block;margin-top:8px}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:26px 0 14px}.sectionhead h2{font-size:19px;margin:0}.template-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.template{background:var(--panel);border:1px solid var(--line);border-radius:17px;overflow:hidden}.template:hover{border-color:var(--gold);transform:translateY(-2px)}.thumb{height:190px;background:linear-gradient(145deg,#f6f2e9,#d8deef);color:#20243b;padding:18px;overflow:hidden;position:relative}.thumb .fake-name{font-weight:900;font-size:18px;border-bottom:3px solid #b99a5a;padding-bottom:8px}.thumb .fake-line{height:5px;background:#b6bed0;margin-top:10px;border-radius:9px;width:80%}.thumb .fake-line.short{width:48%}.thumb.dark{background:linear-gradient(145deg,#20283d,#44506c);color:#fff}.thumb.rose{background:linear-gradient(145deg,#f7e7e5,#e6c7ca)}.thumb.lilac{background:linear-gradient(145deg,#eeeaff,#c9c3ef)}.template-info{padding:14px}.template-info h3{margin:0 0 4px;font-size:15px}.tag{font-size:11px;color:var(--gold);background:#3a3329;padding:4px 8px;border-radius:20px;display:inline-block;margin:3px 3px 0 0}.filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}.field{display:grid;gap:6px;margin-bottom:13px}.field label{font-size:12px;color:var(--muted);font-weight:700}.field input,.field textarea,.field select,.filters input,.filters select{width:100%;background:#0f1426;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:10px 12px;outline:none}.field textarea{min-height:88px;resize:vertical}.filters input{max-width:330px}.editor{display:grid;grid-template-columns:330px minmax(0,1fr);gap:18px}.editorform{max-height:calc(100vh - 145px);overflow:auto}.previewwrap{background:#242a40;border-radius:17px;padding:24px;min-height:650px;display:flex;justify-content:center;align-items:flex-start;overflow:auto}.paper{background:white;color:#202437;width:100%;max-width:760px;min-height:950px;padding:48px 55px;box-shadow:0 15px 50px #0006;font-family:Arial,sans-serif}.paper h1{font-size:31px;margin:0;color:#202a43}.paper h2{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;border-bottom:2px solid #c4a568;padding-bottom:6px;margin:24px 0 9px;color:#27314b}.paper p{font-size:13px;white-space:pre-line;margin:5px 0;color:#434b60}.paper .role{color:#a27d38;font-weight:bold;margin:5px 0 15px}.paper .contact{font-size:11px;color:#687086}.portfolio-paper{background:linear-gradient(145deg,#171d33,#353a60);color:white;border-radius:4px}.portfolio-paper h1{color:white;font-size:46px}.portfolio-paper h2{color:#e8ca87;border-color:#e8ca87}.portfolio-paper p{color:#d5d9eb}.poster-paper{background:#f3ead9;color:#1c2336;text-align:center;display:flex;flex-direction:column;justify-content:center}.poster-paper h1{font-size:45px;color:#202743}.poster-paper h2{font-size:22px;border:0;color:#a07835}.poster-paper p{font-size:17px}.auth{min-height:100vh;display:grid;place-items:center;padding:25px;background:radial-gradient(circle at 20% 10%,#32345b,transparent 35%),var(--bg)}.authbox{width:min(950px,100%);display:grid;grid-template-columns:1fr 1fr;background:var(--panel);border:1px solid var(--line);border-radius:24px;overflow:hidden}.authart{padding:45px;background:linear-gradient(145deg,#242844,#5b4b46);display:flex;flex-direction:column;justify-content:space-between}.authform{padding:42px}.authform h2{margin:0 0 5px}.toast{position:fixed;bottom:20px;right:20px;background:#252d48;border:1px solid var(--line);padding:12px 17px;border-radius:12px;z-index:50}.empty{padding:45px;text-align:center;border:1px dashed var(--line);border-radius:18px;color:var(--muted)}.modalback{position:fixed;inset:0;background:#070a14c9;z-index:20;display:grid;place-items:center;padding:20px}.modal{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;width:min(560px,100%)}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.right{margin-left:auto}.mobilemenu{display:none}
-@media(max-width:1100px){.template-grid{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{display:none}.topbar{padding:0 16px}.content{padding:18px 15px}.template-grid{grid-template-columns:repeat(2,1fr)}.editor{grid-template-columns:1fr}.editorform{max-height:none}.previewwrap{padding:10px;min-height:500px}.paper{padding:28px 24px;min-height:750px}.authbox{grid-template-columns:1fr}.authart{display:none}.grid{grid-template-columns:1fr 1fr}.mobilemenu{display:inline-block}}
-@media(max-width:420px){.template-grid{grid-template-columns:1fr 1fr;gap:9px}.thumb{height:145px}.grid{grid-template-columns:1fr 1fr}.stat{padding:13px}.stat strong{font-size:22px}}
-@media print{body{background:white}.sidebar,.topbar,.editorform,.no-print{display:none!important}.app{display:block}.content{padding:0}.editor{display:block}.previewwrap{padding:0;background:white}.paper{box-shadow:none;max-width:none;width:100%;min-height:auto;margin:0;padding:18mm 17mm}}
+:root {
+  --bg:#f4f6fa;
+  --panel:#ffffff;
+  --nav:#101b32;
+  --nav2:#172744;
+  --blue:#3569e8;
+  --text:#18243a;
+  --muted:#8290a5;
+  --line:#e9edf4;
+  --green:#159b70;
+  --red:#d94c5b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Inter,Arial,sans-serif;color:var(--text)}
+button,input{font:inherit}
+.app{display:flex;min-height:100vh}
+.sidebar{width:255px;background:var(--nav);color:white;padding:22px 14px;flex-shrink:0}
+.brand{font-size:25px;font-weight:850;letter-spacing:2px;padding:4px 12px}
+.brand small{display:block;font-size:10px;color:#94a8c8;letter-spacing:2px;margin-top:5px}
+.company{background:var(--nav2);padding:13px;border-radius:10px;margin:25px 4px 18px;font-size:12px}
+.company strong{display:block;font-size:13px;margin-bottom:5px}
+.nav-label{font-size:10px;color:#8294b2;padding:17px 12px 8px;letter-spacing:1.5px}
+.nav{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;color:#b6c4d9;font-size:13px;cursor:pointer;margin:2px 0}
+.nav:hover,.nav.active{background:#263b60;color:white}
+.nav.active{border-left:3px solid #73a1ff}
+.main{flex:1;min-width:0}
+.topbar{height:72px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px}
+.search{border:1px solid var(--line);padding:10px 14px;border-radius:9px;width:min(350px,45vw)}
+.user{font-size:12px;display:flex;align-items:center;gap:10px}
+.avatar{background:#e5edff;color:#3569e8;padding:10px;border-radius:50%;font-weight:bold}
+.content{padding:28px 30px;max-width:1600px;margin:auto}
+.heading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:24px}
+.heading h1{font-size:24px;margin:0}
+.muted{color:var(--muted);font-size:12px;margin-top:7px}
+.btn{border:0;border-radius:8px;background:var(--blue);color:white;padding:11px 15px;cursor:pointer}
+.btn.secondary{background:white;color:var(--text);border:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.card{background:white;border:1px solid var(--line);border-radius:13px;padding:19px;min-width:0}
+.metric-title{color:var(--muted);font-size:12px}
+.metric{font-size:25px;font-weight:750;margin:12px 0 6px}
+.positive{color:var(--green);font-size:11px}
+.negative{color:var(--red);font-size:11px}
+.section-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:18px}
+.card h3{font-size:14px;margin:0 0 18px}
+.chart{height:260px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;color:var(--muted);font-weight:500;padding:12px 8px;border-bottom:1px solid var(--line)}
+td{padding:14px 8px;border-bottom:1px solid var(--line)}
+.status{padding:5px 8px;border-radius:20px;background:#e8f7f0;color:var(--green);font-size:10px}
+.status.warn{background:#fff4e2;color:#b47a19}
+.page{display:none}
+.page.active{display:block}
+.module-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.module{padding:20px;border:1px solid var(--line);border-radius:12px;background:white;cursor:pointer}
+.module:hover{border-color:var(--blue);transform:translateY(-2px)}
+.module b{display:block;margin-bottom:8px}
+.module span{font-size:12px;color:var(--muted)}
+.field{width:100%;padding:11px;border:1px solid var(--line);border-radius:8px;margin:7px 0 15px}
+.notice{padding:13px;background:#fff7e7;border:1px solid #f5e4bd;border-radius:9px;font-size:12px;color:#8b641d;margin:15px 0}
+@media(max-width:1000px){.sidebar{width:210px}.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.sidebar{width:65px;padding:15px 6px}.brand{font-size:12px;padding:8px 4px}.brand small,.company,.nav-label,.nav span{display:none}.nav{justify-content:center;font-size:18px;padding:14px 4px}.content{padding:20px 13px}.topbar{padding:0 14px}.section-grid{grid-template-columns:1fr}.module-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<div id="root"></div><div id="toast" class="toast hidden"></div>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">FINOVA<small>INTELLIGENT FINANCE ERP</small></div>
+  <div class="company"><strong>Demo Enterprise</strong>Vietnam · VND · 2026</div>
+  <div class="nav-label">WORKSPACE</div>
+  <div class="nav active" data-page="dashboard">▦ <span>Dashboard</span></div>
+  <div class="nav" data-page="data">⇧ <span>Data Center</span></div>
+  <div class="nav" data-page="vouchers">▤ <span>Chứng từ & Sổ sách</span></div>
+  <div class="nav-label">ACCOUNTING</div>
+  <div class="nav" data-page="sales">↗ <span>Mua hàng & Bán hàng</span></div>
+  <div class="nav" data-page="cash">◉ <span>Tiền & Ngân hàng</span></div>
+  <div class="nav" data-page="inventory">▧ <span>Kho & Giá thành</span></div>
+  <div class="nav" data-page="assets">▣ <span>Tài sản & Phân bổ</span></div>
+  <div class="nav" data-page="payroll">♙ <span>Tiền lương</span></div>
+  <div class="nav-label">FINANCE & CONTROL</div>
+  <div class="nav" data-page="tax">▥ <span>Thuế & Hóa đơn</span></div>
+  <div class="nav" data-page="closing">✓ <span>Đối chiếu & Khóa sổ</span></div>
+  <div class="nav" data-page="reports">▤ <span>Báo cáo tài chính</span></div>
+  <div class="nav" data-page="audit">⌕ <span>Kiểm toán & Kiểm soát</span></div>
+  <div class="nav-label">INTELLIGENCE</div>
+  <div class="nav" data-page="legal">⚖ <span>Legal Library</span></div>
+  <div class="nav" data-page="ai">✧ <span>FINOVA AI</span></div>
+  <div class="nav" data-page="settings">⚙ <span>Thiết lập hệ thống</span></div>
+</aside>
+<main class="main">
+<header class="topbar">
+  <input class="search" placeholder="Tìm chứng từ, tài khoản, nghiệp vụ...">
+  <div class="user"><span>Demo workspace</span><div class="avatar">FN</div></div>
+</header>
+<div class="content">
+<section class="page active" id="dashboard">
+  <div class="heading"><div><h1>Tổng quan tài chính</h1><div class="muted">Xin chào! Đây là tình hình hoạt động kế toán doanh nghiệp.</div></div><button class="btn" onclick="showPage('data')">+ Nhập dữ liệu</button></div>
+  <div class="grid">
+    <div class="card"><div class="metric-title">Tổng doanh thu</div><div class="metric">2,85 tỷ</div><div class="positive">↑ 12,8% so với kỳ trước</div></div>
+    <div class="card"><div class="metric-title">Tổng chi phí</div><div class="metric">1,92 tỷ</div><div class="positive">Trong ngân sách dự kiến</div></div>
+    <div class="card"><div class="metric-title">Lợi nhuận tạm tính</div><div class="metric">930 triệu</div><div class="positive">↑ 8,4% so với kỳ trước</div></div>
+    <div class="card"><div class="metric-title">Công nợ cần thu</div><div class="metric">420 triệu</div><div class="negative">12 khoản cần theo dõi</div></div>
+  </div>
+  <div class="section-grid">
+    <div class="card"><h3>Doanh thu và chi phí</h3><div class="chart"><canvas id="financeChart"></canvas></div></div>
+    <div class="card"><h3>Trạng thái xử lý dữ liệu</h3>
+      <p>Chứng từ đã xử lý <b style="float:right">86%</b></p>
+      <div style="height:8px;background:#edf1f7;border-radius:10px"><div style="width:86%;height:8px;background:#3569e8;border-radius:10px"></div></div>
+      <p>Chờ kiểm tra <b style="float:right">12</b></p>
+      <p>Đã phê duyệt <b style="float:right">248</b></p>
+      <p>Cảnh báo <b style="float:right;color:#d94c5b">4</b></p>
+      <div class="notice">Dữ liệu trên dashboard là dữ liệu minh họa, không phải số liệu kế toán thực tế.</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:18px"><h3>Hoạt động gần đây</h3>
+    <table><thead><tr><th>Mã chứng từ</th><th>Nghiệp vụ</th><th>Ngày</th><th>Trạng thái</th></tr></thead>
+    <tbody id="recent"><tr><td>PN0001</td><td>Nhập hàng hóa</td><td>01/11/2026</td><td><span class="status">Đã duyệt</span></td></tr><tr><td>HD0002</td><td>Hóa đơn bán hàng</td><td>01/11/2026</td><td><span class="status warn">Chờ kiểm tra</span></td></tr></tbody></table>
+  </div>
+</section>
+
+<section class="page" id="data">
+  <div class="heading"><div><h1>Data Center</h1><div class="muted">Trung tâm tiếp nhận và xử lý dữ liệu đầu vào.</div></div></div>
+  <div class="card"><h3>Tải chứng từ lên</h3><input type="file" id="files" class="field" multiple accept=".pdf,.xml,.xlsx,.xls,.csv,.jpg,.jpeg,.png"><button class="btn" onclick="previewFiles()">Phân tích dữ liệu</button><div id="fileResult" class="muted"></div>
+  <div class="notice">Bản demo chưa có OCR, AI đọc hóa đơn hoặc kết nối cơ sở dữ liệu. Chức năng này cần backend và dịch vụ xử lý chứng từ.</div></div>
+  <div class="card" style="margin-top:16px"><h3>Quy trình tiếp nhận</h3><p>01. Tải lên → 02. Nhận diện → 03. Kiểm tra → 04. Đề xuất định khoản → 05. Phê duyệt → 06. Ghi sổ.</p></div>
+</section>
+
+<section class="page" id="vouchers">
+  <div class="heading"><div><h1>Chứng từ & Sổ sách</h1><div class="muted">Quản lý phiếu thu, chi, nhập xuất và bút toán.</div></div><button class="btn" onclick="newVoucher()">+ Tạo chứng từ</button></div>
+  <div class="card"><table><thead><tr><th>Mã</th><th>Ngày</th><th>Diễn giải</th><th>Nợ</th><th>Có</th><th>Số tiền</th></tr></thead><tbody id="vouchersList"><tr><td>PC0001</td><td>01/11/2026</td><td>Chi phí văn phòng</td><td>642</td><td>111</td><td>5.000.000</td></tr></tbody></table></div>
+</section>
+
+<section class="page" id="sales"><h1>Mua hàng & Bán hàng</h1><div class="module-grid"><div class="module"><b>Doanh thu bán hàng</b><span>Hóa đơn, doanh thu, phải thu</span></div><div class="module"><b>Mua hàng</b><span>Hóa đơn đầu vào, chi phí, phải trả</span></div><div class="module"><b>Công nợ</b><span>Tuổi nợ và đối chiếu khách hàng</span></div></div></section>
+<section class="page" id="cash"><h1>Tiền & Ngân hàng</h1><div class="module-grid"><div class="module"><b>Quỹ tiền mặt</b><span>Phiếu thu, phiếu chi, tồn quỹ</span></div><div class="module"><b>Tài khoản ngân hàng</b><span>Sao kê và giao dịch</span></div><div class="module"><b>Đối chiếu ngân hàng</b><span>So khớp giao dịch và phát hiện chênh lệch</span></div></div></section>
+<section class="page" id="inventory"><h1>Kho & Giá thành</h1><div class="module-grid"><div class="module"><b>Nhập xuất tồn</b><span>Quản lý vật tư và hàng hóa</span></div><div class="module"><b>Tính giá xuất kho</b><span>Bình quân, FIFO và phương pháp cấu hình</span></div><div class="module"><b>Giá thành sản xuất</b><span>Chi phí nguyên vật liệu, nhân công, sản xuất chung</span></div></div></section>
+<section class="page" id="assets"><h1>Tài sản & Phân bổ</h1><div class="module-grid"><div class="module"><b>Tài sản cố định</b><span>Ghi tăng, điều chuyển, thanh lý</span></div><div class="module"><b>Khấu hao</b><span>Lập lịch và tính khấu hao</span></div><div class="module"><b>Chi phí trả trước</b><span>Phân bổ theo kỳ</span></div></div></section>
+<section class="page" id="payroll"><h1>Tiền lương</h1><div class="module-grid"><div class="module"><b>Bảng lương</b><span>Lương, phụ cấp, khấu trừ</span></div><div class="module"><b>Bảo hiểm</b><span>Quản lý các khoản trích theo quy định</span></div><div class="module"><b>Thuế TNCN</b><span>Tính và đối chiếu dữ liệu thuế</span></div></div></section>
+<section class="page" id="tax"><h1>Thuế & Hóa đơn</h1><div class="module-grid"><div class="module"><b>Thuế GTGT</b><span>Kiểm tra đầu vào và đầu ra</span></div><div class="module"><b>Thuế TNDN</b><span>Thu nhập tính thuế và quyết toán</span></div><div class="module"><b>Thuế TNCN</b><span>Kê khai và quyết toán</span></div><div class="module"><b>Hóa đơn điện tử</b><span>Tích hợp nhà cung cấp được hỗ trợ</span></div></div></section>
+<section class="page" id="closing"><h1>Đối chiếu & Khóa sổ</h1><div class="card"><h3>Checklist cuối kỳ</h3><p>☐ Đối chiếu ngân hàng</p><p>☐ Đối chiếu công nợ</p><p>☐ Kiểm kê kho</p><p>☐ Kiểm tra tài sản và khấu hao</p><p>☐ Kiểm tra thuế và hóa đơn</p><p>☐ Kiểm tra số dư tài khoản</p><p>☐ Phê duyệt kết chuyển</p><button class="btn" onclick="alert('Demo: Chưa thực hiện kết chuyển thực tế')">Kiểm tra điều kiện khóa sổ</button></div></section>
+<section class="page" id="reports"><h1>Báo cáo tài chính</h1><div class="module-grid"><div class="module"><b>Bảng cân đối kế toán</b><span>Tài sản, nợ phải trả, vốn chủ sở hữu</span></div><div class="module"><b>Báo cáo kết quả kinh doanh</b><span>Doanh thu, chi phí, lợi nhuận</span></div><div class="module"><b>Lưu chuyển tiền tệ</b><span>Dòng tiền hoạt động, đầu tư, tài chính</span></div><div class="module"><b>Sổ cái & Sổ chi tiết</b><span>Tra cứu phát sinh và số dư</span></div></div></section>
+<section class="page" id="audit"><h1>Kiểm toán & Kiểm soát</h1><div class="card"><h3>Trung tâm kiểm soát</h3><p>Phát hiện chứng từ trùng lặp, bút toán bất thường, số dư âm, sai lệch đối chiếu và thay đổi dữ liệu.</p><div class="notice">AI chỉ đưa ra cảnh báo và bằng chứng; kết luận kiểm toán phải do người có chuyên môn thực hiện.</div></div></section>
+<section class="page" id="legal"><h1>Legal Library</h1><div class="card"><h3>Thư viện pháp luật</h3><p>Quản lý văn bản, ngày hiệu lực, văn bản sửa đổi, thay thế và quy tắc kế toán - thuế.</p><div class="notice">Chưa kết nối nguồn pháp luật chính thức. Không tự động thay đổi quy tắc hạch toán trong bản demo.</div></div></section>
+<section class="page" id="ai"><h1>FINOVA AI</h1><div class="card"><h3>Trợ lý kế toán thông minh</h3><input class="field" id="question" placeholder="Ví dụ: Kiểm tra các khoản công nợ quá hạn..."><button class="btn" onclick="askAI()">Gửi câu hỏi</button><div id="answer" class="muted"></div><div class="notice">AI cần được kết nối backend, dữ liệu doanh nghiệp và công cụ nghiệp vụ trước khi có thể phân tích dữ liệu thật.</div></div></section>
+<section class="page" id="settings"><h1>Thiết lập hệ thống</h1><div class="module-grid"><div class="module"><b>Hồ sơ doanh nghiệp</b><span>Loại hình, ngành nghề, kỳ kế toán</span></div><div class="module"><b>Hệ thống tài khoản</b><span>Danh mục tài khoản và quy tắc</span></div><div class="module"><b>Người dùng & phân quyền</b><span>Admin, kế toán, kế toán trưởng, kiểm toán</span></div><div class="module"><b>Quy trình phê duyệt</b><span>Ngưỡng duyệt và phân tách nhiệm vụ</span></div><div class="module"><b>Bảo mật & nhật ký</b><span>RLS, audit log, xác thực</span></div><div class="module"><b>Sao lưu & phục hồi</b><span>Quản lý bản sao dữ liệu</span></div></div></section>
+</div>
+</main>
+</div>
 <script>
-const SUPABASE_URL='https://tjrbuixjmcgqgfxzdswi.supabase.co';
-const SUPABASE_KEY='sb_publishable_NzJCKHCmcXobu1KNMW3x9A_hL4-8gvy';
-const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const templates=[
-{id:'cv-clean',name:'Executive Clean',type:'cv',category:'Corporate',style:'Minimal',level:'Senior',tone:'',theme:'light',desc:'Bố cục chuyên nghiệp, rõ ràng, thân thiện ATS.'},
-{id:'cv-ats',name:'ATS Professional',type:'cv',category:'ATS',style:'Minimal',level:'Fresher',theme:'light',desc:'Tối ưu khả năng đọc của hệ thống tuyển dụng.'},
-{id:'cv-modern',name:'Modern Accent',type:'cv',category:'Creative',style:'Modern',level:'Junior',theme:'lilac',desc:'Điểm nhấn màu sắc, phù hợp ngành sáng tạo.'},
-{id:'cv-rose',name:'Soft Editorial',type:'cv',category:'Corporate',style:'Elegant',level:'Middle',theme:'rose',desc:'Thanh lịch, cân đối và dễ đọc.'},
-{id:'cv-tech',name:'Tech Specialist',type:'cv',category:'IT',style:'Modern',level:'Middle',theme:'dark',desc:'Tập trung kỹ năng kỹ thuật và dự án.'},
-{id:'cv-hr',name:'People & Culture',type:'cv',category:'HR',style:'Corporate',level:'Junior',theme:'light',desc:'Phù hợp nhân sự, hành chính và tuyển dụng.'},
-{id:'cv-finance',name:'Finance Pro',type:'cv',category:'Finance',style:'Corporate',level:'Senior',theme:'light',desc:'Tối giản, ưu tiên thành tích và số liệu.'},
-{id:'cv-student',name:'Graduate Starter',type:'cv',category:'Student',style:'Minimal',level:'Student',theme:'lilac',desc:'Dành cho sinh viên và ứng viên mới tốt nghiệp.'},
-{id:'port-dark',name:'Creative Showcase',type:'portfolio',category:'Design',style:'Creative',level:'All',theme:'dark',desc:'Portfolio nổi bật với phong cách trình bày đậm.'},
-{id:'port-min',name:'Personal Minimal',type:'portfolio',category:'Personal',style:'Minimal',level:'All',theme:'light',desc:'Giới thiệu cá nhân và dự án tinh gọn.'},
-{id:'port-lilac',name:'Digital Presence',type:'portfolio',category:'IT',style:'Modern',level:'All',theme:'lilac',desc:'Trình bày năng lực số và sản phẩm.'},
-{id:'port-rose',name:'Visual Story',type:'portfolio',category:'Creative',style:'Editorial',level:'All',theme:'rose',desc:'Kể câu chuyện nghề nghiệp bằng hình ảnh và nội dung.'},
-{id:'poster-hire',name:'We Are Hiring',type:'poster',category:'Recruitment',style:'Corporate',level:'All',theme:'light',desc:'Poster tuyển dụng doanh nghiệp.'},
-{id:'poster-bold',name:'Bold Recruitment',type:'poster',category:'Recruitment',style:'Modern',level:'All',theme:'dark',desc:'Thông điệp tuyển dụng mạnh, dễ thu hút.'},
-{id:'poster-event',name:'Event Announcement',type:'poster',category:'Event',style:'Elegant',level:'All',theme:'rose',desc:'Poster sự kiện, hội thảo, workshop.'},
-{id:'poster-sale',name:'Business Promo',type:'poster',category:'Business',style:'Creative',level:'All',theme:'lilac',desc:'Truyền thông sản phẩm và thương hiệu.'}
-];
-const defaults={
-cv:{full_name:'Nguyễn Minh Anh',role:'Chuyên viên Nhân sự',email:'minhanh@email.com',phone:'0900 000 000',location:'TP. Hồ Chí Minh',summary:'Ứng viên chủ động, có tư duy hệ thống và khả năng phối hợp đa phòng ban.',experience:'2024 – Nay | Công ty ABC\\nChuyên viên Nhân sự\\n• Quản lý hồ sơ, tuyển dụng và báo cáo nhân sự.\\n• Phối hợp chấm công, tính lương và chế độ.',education:'Đại học XYZ | Quản trị Nguồn nhân lực\\n2020 – 2024',skills:'Tuyển dụng • C&B • Excel • Giao tiếp',language:'Tiếng Việt • English'},
-portfolio:{full_name:'Minh Anh',role:'Creative Professional',tagline:'Make ideas visible.',about:'Tôi kết hợp tư duy chiến lược và khả năng sáng tạo để tạo ra những trải nghiệm có giá trị.',email:'hello@email.com',location:'Ho Chi Minh City',projects:'01 — Brand identity\\nXây dựng hệ thống nhận diện thương hiệu.\\n\\n02 — Digital experience\\nThiết kế trải nghiệm số lấy người dùng làm trung tâm.',skills:'Strategy • Design • Communication • Research'},
-poster:{title:'WE ARE HIRING',headline:'TÌM ĐỒNG ĐỘI MỚI',subheadline:'Cùng phát triển những điều khác biệt',company:'CANVIO Studio',role:'Marketing Executive • HR Assistant',details:'Môi trường năng động\\nĐào tạo & phát triển\\nThu nhập cạnh tranh',contact:'careers@company.com | 0900 000 000'}
-};
-let user=null, page='dashboard', designs=[], current=null, activeTemplate=null, search='', typeFilter='all', categoryFilter='all';
-function toast(s){const t=$('#toast');t.textContent=s;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),2600)}
-function templateCard(t){return `<article class="template"><div class="thumb ${t.theme==='dark'?'dark':t.theme==='rose'?'rose':t.theme==='lilac'?'lilac':''}"><div class="fake-name">${esc(t.type==='poster'?'YOUR NEXT CHAPTER':t.type==='portfolio'?'HELLO, I AM':t.name)}</div><div class="fake-line"></div><div class="fake-line short"></div><div class="fake-line"></div><div class="fake-line short"></div></div><div class="template-info"><h3>${esc(t.name)}</h3><div class="muted small">${esc(t.desc)}</div><span class="tag">${esc(t.type.toUpperCase())}</span><span class="tag">${esc(t.category)}</span><div class="row" style="margin-top:12px"><button class="btn primary" onclick="useTemplate('${t.id}')">Sử dụng mẫu</button><button class="btn ghost" onclick="previewTemplate('${t.id}')">Xem</button></div></div></article>`}
-function shell(){return `<div class="app"><aside class="sidebar"><div class="brand">CANV<span>IO</span><small>CREATE BEYOND LIMITS</small></div><div class="nav">${[['dashboard','◈','Tổng quan'],['templates','▦','Thư viện mẫu'],['cv','▤','CV Studio'],['portfolio','◇','Portfolio Studio'],['poster','▧','Poster Studio'],['designs','▣','Thiết kế của tôi']].map(([id,ic,n])=>`<button class="${page===id?'active':''}" onclick="go('${id}')"><b>${ic}</b>${n}</button>`).join('')}</div><div class="sidebottom"><div class="muted small">${esc(user?.email||'')}</div><button class="btn ghost" style="width:100%;margin-top:10px" onclick="logout()">Đăng xuất</button></div></aside><main class="main"><header class="topbar"><div class="row"><button class="btn mobilemenu" onclick="toggleMobile()">☰</button><h1>${pageTitle()}</h1></div><div class="row"><span class="muted small">${esc(user?.email||'')}</span><button class="btn primary" onclick="newDesign('cv')">＋ Tạo thiết kế</button></div></header><div class="content" id="view"></div></main></div>`}
-function pageTitle(){return ({dashboard:'Tổng quan sáng tạo',templates:'Template Marketplace',cv:'CV Studio',portfolio:'Portfolio Studio',poster:'Poster Studio',designs:'Thiết kế của tôi',editor:'Design Editor'})[page]||'CANVIO'}
-function go(p){page=p;render();if(p==='cv'||p==='portfolio'||p==='poster')newDesign(p,false)}
-function render(){if(!user){authView();return}$('#root').innerHTML=shell();const v=$('#view');if(page==='dashboard')v.innerHTML=dashboard();else if(page==='templates')v.innerHTML=library();else if(page==='designs')v.innerHTML=libraryDesigns();else if(['cv','portfolio','poster','editor'].includes(page))v.innerHTML=editorView();bindDynamic()}
-function dashboard(){return `<section class="hero"><div class="eyebrow">CANVIO CREATIVE CAREER STUDIO</div><h2>Make your potential<br>visible.</h2><p>Tạo CV chuyên nghiệp, portfolio ấn tượng và ấn phẩm tuyển dụng trong một không gian sáng tạo duy nhất.</p><div class="row"><button class="btn primary" onclick="go('templates')">Khám phá thư viện mẫu</button><button class="btn" onclick="newDesign('cv')">Bắt đầu thiết kế</button></div></section><div class="grid"><div class="stat"><span class="muted">Thiết kế của tôi</span><strong>${designs.length}</strong></div><div class="stat"><span class="muted">Mẫu sáng tạo</span><strong>${templates.length}+</strong></div><div class="stat"><span class="muted">Không gian làm việc</span><strong>01</strong></div></div><div class="sectionhead"><h2>Bắt đầu sáng tạo</h2><button class="btn ghost" onclick="go('templates')">Xem tất cả →</button></div><div class="grid"><div class="card"><div class="eyebrow">01 / CAREER</div><h3>CV Studio</h3><p class="muted">Xây dựng CV rõ ràng, chuyên nghiệp và dễ đọc.</p><button class="btn primary" onclick="newDesign('cv')">Tạo CV</button></div><div class="card"><div class="eyebrow">02 / PERSONAL BRAND</div><h3>Portfolio Studio</h3><p class="muted">Kể câu chuyện năng lực qua dự án và dấu ấn cá nhân.</p><button class="btn primary" onclick="newDesign('portfolio')">Tạo Portfolio</button></div><div class="card"><div class="eyebrow">03 / BUSINESS</div><h3>Poster Studio</h3><p class="muted">Tạo poster tuyển dụng, sự kiện và truyền thông.</p><button class="btn primary" onclick="newDesign('poster')">Tạo Poster</button></div></div><div class="sectionhead"><h2>Mẫu nổi bật</h2><button class="btn ghost" onclick="go('templates')">Mở thư viện →</button></div><div class="template-grid">${templates.slice(0,4).map(templateCard).join('')}</div>`}
-function library(){let list=templates.filter(t=>(typeFilter==='all'||t.type===typeFilter)&&(categoryFilter==='all'||t.category===categoryFilter)&&(`${t.name} ${t.desc} ${t.category} ${t.style}`).toLowerCase().includes(search.toLowerCase()));return `<div class="hero"><div class="eyebrow">TEMPLATE MARKETPLACE</div><h2>Find your style.<br>Create your story.</h2><p>Chọn điểm khởi đầu phù hợp, sau đó cá nhân hóa nội dung và phong cách của bạn.</p></div><div class="filters"><input id="templateSearch" placeholder="Tìm mẫu, ngành nghề, phong cách..." value="${esc(search)}"><select id="typeFilter"><option value="all">Tất cả loại</option><option value="cv">CV</option><option value="portfolio">Portfolio</option><option value="poster">Poster</option></select><select id="categoryFilter"><option value="all">Tất cả danh mục</option>${['Corporate','ATS','Creative','IT','HR','Finance','Student','Design','Personal','Recruitment','Event','Business'].map(x=>`<option>${x}</option>`).join('')}</select></div><div class="sectionhead"><h2>${list.length} mẫu thiết kế</h2><span class="muted small">Bộ sưu tập CANVIO</span></div><div class="template-grid">${list.length?list.map(templateCard).join(''):'<div class="empty">Không tìm thấy mẫu phù hợp.</div>'}</div>`}
-function libraryDesigns(){return `<div class="row" style="margin-bottom:18px"><input id="designSearch" placeholder="Tìm thiết kế..." value="${esc(search)}" style="max-width:350px;background:#0f1426;border:1px solid var(--line);border-radius:10px;padding:10px;color:white"><button class="btn primary" onclick="newDesign('cv')">＋ Tạo mới</button></div><div class="grid">${designs.filter(d=>(d.title||'').toLowerCase().includes(search.toLowerCase())).map(d=>`<div class="card"><div class="eyebrow">${esc(d.design_type||'design')}</div><h3>${esc(d.title)}</h3><p class="muted small">Cập nhật: ${new Date(d.updated_at||d.created_at||Date.now()).toLocaleString('vi-VN')}</p><div class="row"><button class="btn primary" onclick="editDesign('${d.id}')">Mở</button><button class="btn" onclick="duplicateDesign('${d.id}')">Nhân bản</button><button class="btn danger" onclick="deleteDesign('${d.id}')">Xóa</button></div></div>`).join('')||'<div class="empty">Chưa có thiết kế. Hãy tạo thiết kế đầu tiên.</div>'}</div>`}
-function newDesign(type,rerender=true){current={id:null,title:type==='cv'?'CV chưa đặt tên':type==='portfolio'?'Portfolio chưa đặt tên':'Poster chưa đặt tên',design_type:type,content:JSON.parse(JSON.stringify(defaults[type]))};activeTemplate=null;page=type;if(rerender)render();else renderEditorOnly()}
-function renderEditorOnly(){const v=$('#view');if(v)v.innerHTML=editorView()}
-function editorView(){if(!current){current={id:null,title:'Thiết kế mới',design_type:['cv','portfolio','poster'].includes(page)?page:'cv',content:JSON.parse(JSON.stringify(defaults[['cv','portfolio','poster'].includes(page)?page:'cv']))}}const c=current.content||{};let fields=Object.keys(c);return `<div class="row no-print" style="margin-bottom:15px"><input id="designTitle" value="${esc(current.title)}" style="max-width:300px;background:#0f1426;border:1px solid var(--line);border-radius:10px;padding:10px;color:white"><button class="btn primary" onclick="saveDesign()">Lưu thiết kế</button><button class="btn" onclick="window.print()">Xuất PDF</button><button class="btn" onclick="shareDesign()">Chia sẻ</button><button class="btn ghost" onclick="go('templates')">Đổi mẫu</button></div><div class="editor"><section class="panel editorform"><div class="sectionhead" style="margin-top:0"><h2>Nội dung thiết kế</h2><span class="tag">${current.design_type.toUpperCase()}</span></div>${fields.map(k=>`<div class="field"><label>${fieldLabel(k)}</label><textarea data-field="${k}">${esc(c[k])}</textarea></div>`).join('')}<div class="field"><label>Màu nhấn</label><input type="color" id="accentColor" value="${current.accent||'#b99a5a'}"></div><div class="field"><label>Kiểu hiển thị</label><select id="layoutStyle"><option value="classic">Classic</option><option value="modern">Modern</option><option value="minimal">Minimal</option></select></div><button class="btn primary" style="width:100%" onclick="saveDesign()">Lưu vào thiết kế của tôi</button></section><section><div class="previewwrap"><div id="paper" class="paper ${current.design_type==='portfolio'?'portfolio-paper':current.design_type==='poster'?'poster-paper':''}">${previewHtml(c,current.design_type)}</div></div><p class="muted small no-print" style="text-align:center">Bản xem trước được cập nhật khi bạn chỉnh sửa nội dung.</p></section></div>`}
-function fieldLabel(k){return ({full_name:'Họ và tên',role:'Chức danh / Vị trí',email:'Email',phone:'Số điện thoại',location:'Địa điểm',summary:'Tóm tắt bản thân',experience:'Kinh nghiệm làm việc',education:'Học vấn',skills:'Kỹ năng',language:'Ngoại ngữ',tagline:'Thông điệp cá nhân',about:'Giới thiệu',projects:'Dự án tiêu biểu',title:'Tiêu đề chính',headline:'Thông điệp nổi bật',subheadline:'Thông điệp phụ',company:'Tên doanh nghiệp',details:'Thông tin / Quyền lợi',contact:'Thông tin liên hệ'})[k]||k}
-function previewHtml(c,type){if(type==='poster')return `<div class="eyebrow">CANVIO CREATIVE STUDIO</div><h1>${esc(c.title)}</h1><h2>${esc(c.headline)}</h2><p>${esc(c.subheadline)}</p><div style="height:2px;background:#b99a5a;width:70%;margin:30px auto"></div><h2>${esc(c.company)}</h2><p><b>${esc(c.role)}</b></p><p>${esc(c.details)}</p><p style="margin-top:35px">${esc(c.contact)}</p>`;if(type==='portfolio')return `<div class="eyebrow">PERSONAL PORTFOLIO</div><h1>${esc(c.full_name)}</h1><div class="role">${esc(c.role)}</div><h2>${esc(c.tagline)}</h2><p>${esc(c.about)}</p><h2>Selected Projects</h2><p>${esc(c.projects)}</p><h2>Core Skills</h2><p>${esc(c.skills)}</p><p class="contact">${esc(c.email)} · ${esc(c.location)}</p>`;return `<h1>${esc(c.full_name)}</h1><div class="role">${esc(c.role)}</div><div class="contact">${esc(c.email)} · ${esc(c.phone)} · ${esc(c.location)}</div><h2>Professional Summary</h2><p>${esc(c.summary)}</p><h2>Work Experience</h2><p>${esc(c.experience)}</p><h2>Education</h2><p>${esc(c.education)}</p><h2>Skills</h2><p>${esc(c.skills)}</p><h2>Languages</h2><p>${esc(c.language)}</p>`}
-function bindDynamic(){document.querySelectorAll('[data-field]').forEach(el=>el.addEventListener('input',()=>{current.content[el.dataset.field]=el.value;const paper=$('#paper');if(paper)paper.innerHTML=previewHtml(current.content,current.design_type)}));const ts=$('#templateSearch');if(ts)ts.addEventListener('input',e=>{search=e.target.value;const y=e.target.selectionStart;const v=$('#view');v.innerHTML=library();$('#templateSearch').focus();$('#templateSearch').setSelectionRange(y,y);bindDynamic()});const tf=$('#typeFilter');if(tf){tf.value=typeFilter;tf.onchange=e=>{typeFilter=e.target.value;render()}}const cf=$('#categoryFilter');if(cf){cf.value=categoryFilter;cf.onchange=e=>{categoryFilter=e.target.value;render()}}const ds=$('#designSearch');if(ds)ds.oninput=e=>{search=e.target.value;render()};const title=$('#designTitle');if(title)title.oninput=e=>current.title=e.target.value;const accent=$('#accentColor');if(accent)accent.oninput=e=>{current.accent=e.target.value;const p=$('#paper');if(p)p.style.setProperty('--accent',e.target.value)}}
-function useTemplate(id){const t=templates.find(x=>x.id===id);if(!t)return;newDesign(t.type);activeTemplate=t.id;current.title=t.name+' — thiết kế mới';current.template_id=t.id;render();toast('Đã mở mẫu '+t.name)}
-function previewTemplate(id){const t=templates.find(x=>x.id===id);if(!t)return;toast(t.name+' · '+t.desc)}
-async function loadDesigns(){if(!user)return;const {data,error}=await db.from('designs').select('id,title,design_type,status,content,created_at,updated_at').order('updated_at',{ascending:false}).limit(100);if(error){console.warn(error);toast('Không tải được thiết kế: '+error.message);return}designs=data||[]}
-async function saveDesign(){if(!user)return toast('Vui lòng đăng nhập');current.title=$('#designTitle')?.value||current.title;const row={user_id:user.id,title:current.title,design_type:current.design_type,status:'draft',content:current.content,updated_at:new Date().toISOString()};let q=current.id?db.from('designs').update(row).eq('id',current.id).select().single():db.from('designs').insert(row).select().single();const {data,error}=await q;if(error){toast('Lưu thất bại: '+error.message);return}current.id=data.id;await loadDesigns();toast('Đã lưu thiết kế');}
-function editDesign(id){const d=designs.find(x=>x.id===id);if(!d)return;current={...d,content:d.content||{}};page=d.design_type;render()}
-async function duplicateDesign(id){const d=designs.find(x=>x.id===id);if(!d)return;const {data,error}=await db.from('designs').insert({user_id:user.id,title:d.title+' (Bản sao)',design_type:d.design_type,status:'draft',content:d.content}).select().single();if(error)toast(error.message);else{await loadDesigns();render();toast('Đã nhân bản')}}
-async function deleteDesign(id){if(!confirm('Xóa thiết kế này?'))return;const {error}=await db.from('designs').delete().eq('id',id);if(error)toast(error.message);else{await loadDesigns();render();toast('Đã xóa')}}
-async function shareDesign(){if(!current?.id){toast('Hãy lưu thiết kế trước khi chia sẻ');return}const {data,error}=await db.from('portfolio_shares').upsert({design_id:current.id,user_id:user.id,is_active:true},{onConflict:'design_id'}).select('share_token').single();if(error){toast('Không tạo được liên kết: '+error.message);return}const url=location.origin+location.pathname+'#share='+data.share_token;try{await navigator.clipboard.writeText(url);toast('Đã sao chép liên kết chia sẻ')}catch{prompt('Sao chép liên kết:',url)}}
-async function loadShared(token){const {data,error}=await db.rpc('canvio_get_shared_design',{p_token:token});if(error||!data?.length){$('#root').innerHTML='<div class="empty">Liên kết không tồn tại hoặc đã bị tắt.</div>';return}const d=data[0];$('#root').innerHTML=`<div class="content"><div class="brand">CANV<span>IO</span></div><div class="previewwrap" style="margin-top:25px"><div class="paper">${previewHtml(d.content||{},d.design_type)}</div></div></div>`}
-function authView(){const mode=window.authMode||'login';$('#root').innerHTML=`<div class="auth"><div class="authbox"><div class="authart"><div class="brand">CANV<span>IO</span><small>CREATE BEYOND LIMITS</small></div><div><div class="eyebrow">YOUR CREATIVE CAREER STUDIO</div><h1 style="font-size:42px;line-height:1.08">Make your<br>potential visible.</h1><p>CV. Portfolio. Business creativity. All in one place.</p></div><span class="small muted">© CANVIO Studio</span></div><div class="authform"><h2>${mode==='login'?'Chào mừng trở lại':'Tạo tài khoản CANVIO'}</h2><p class="muted">${mode==='login'?'Đăng nhập để tiếp tục sáng tạo.':'Bắt đầu xây dựng dấu ấn nghề nghiệp của bạn.'}</p><form id="authForm"><div class="field"><label>Email</label><input id="authEmail" type="email" required placeholder="you@email.com"></div>${mode==='signup'?'<div class="field"><label>Họ và tên</label><input id="authName" required placeholder="Tên của bạn"></div>':''}<div class="field"><label>Mật khẩu</label><input id="authPassword" type="password" minlength="6" required placeholder="Tối thiểu 6 ký tự"></div><button class="btn primary" style="width:100%;margin-top:8px">${mode==='login'?'Đăng nhập':'Đăng ký'}</button></form><p class="muted small" style="margin-top:20px">${mode==='login'?'Chưa có tài khoản?':'Đã có tài khoản?'} <a href="#" onclick="authMode='${mode==='login'?'signup':'login'}';authView();return false" style="color:var(--gold)">${mode==='login'?'Đăng ký':'Đăng nhập'}</a></p><p class="muted small">Đăng nhập được xử lý bởi Supabase Auth.</p></div></div></div>`;$('#authForm').onsubmit=authSubmit}
-async function authSubmit(e){e.preventDefault();const email=$('#authEmail').value,password=$('#authPassword').value;let res;if(window.authMode==='signup')res=await db.auth.signUp({email,password,options:{data:{full_name:$('#authName').value}}});else res=await db.auth.signInWithPassword({email,password});if(res.error){toast(res.error.message);return}if(!res.data.session){toast('Kiểm tra email để xác nhận tài khoản.');return}user=res.data.user;await afterLogin()}
-async function afterLogin(){await loadDesigns();page='dashboard';render()}
-async function logout(){await db.auth.signOut();user=null;designs=[];authMode='login';authView()}
-function toggleMobile(){const s=document.querySelector('.sidebar');if(!s)return;s.style.display=s.style.display==='flex'?'none':'flex';s.style.position='absolute';s.style.zIndex=10;s.style.height='100vh'}
-function readShare(){const m=location.hash.match(/share=([a-f0-9-]+)/i);return m?.[1]||null}
-async function init(){const token=readShare();if(token){await loadShared(token);return}const {data}=await db.auth.getSession();if(data.session){user=data.session.user;await afterLogin()}else authView();db.auth.onAuthStateChange((_e,s)=>{if(s?.user){user=s.user;afterLogin()}else if(user){user=null;authView()}})}
-init();
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));
+ document.getElementById(id)?.classList.add('active');
+ document.querySelector(`[data-page="${id}"]`)?.classList.add('active');
+}
+document.querySelectorAll('.nav').forEach(n=>n.addEventListener('click',()=>showPage(n.dataset.page)));
+function previewFiles(){
+ const files=document.getElementById('files').files;
+ document.getElementById('fileResult').textContent=files.length
+ ? `Đã chọn ${files.length} tệp. Bản demo chưa tải tệp lên máy chủ hoặc phân tích nội dung.`
+ : 'Vui lòng chọn chứng từ trước.';
+}
+function newVoucher(){
+ const code='DV'+String(document.querySelectorAll('#vouchersList tr').length+1).padStart(4,'0');
+ const desc=prompt('Nhập diễn giải chứng từ:');
+ if(!desc)return;
+ const amount=prompt('Nhập số tiền minh họa:');
+ if(!amount || !Number.isFinite(Number(amount)))return;
+ const tr=document.createElement('tr');
+ [code,'01/11/2026',desc,'642','111',Number(amount).toLocaleString('vi-VN')].forEach(v=>{
+  const td=document.createElement('td');td.textContent=v;tr.appendChild(td);
+ });
+ document.getElementById('vouchersList').appendChild(tr);
+}
+function askAI(){
+ document.getElementById('answer').textContent='Chưa kết nối AI backend. Không có dữ liệu thật nào được gửi đi.';
+}
+new Chart(document.getElementById('financeChart'),{
+ type:'line',
+ data:{
+  labels:['T1','T2','T3','T4','T5','T6'],
+  datasets:[
+   {label:'Doanh thu',data:[250,320,290,410,390,480],borderColor:'#3569e8',tension:.35},
+   {label:'Chi phí',data:[180,220,210,280,260,310],borderColor:'#16a078',tension:.35}
+  ]
+ },
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}
+});
 </script>
-</body></html>
+</body>
+</html>
